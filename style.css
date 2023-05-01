@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
 * {
     box-sizing: border-box;
     /* padding: 0px; */
@@ -6,7 +8,7 @@
 }
 
 html {
-    font-family: sans-serif;
+    font-family: 'Kanit', sans-serif;
     min-width: 360px;
 }
 
@@ -30,10 +32,12 @@ form {
 input {
     width: 200px;
     font-size: 1.2em;
+    font-family: 'Kanit', sans-serif;
 }
 
 button{
     padding: 3px;
+    font-family: 'Kanit', sans-serif;
 }
 
 .resultParas {
