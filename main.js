@@ -18,10 +18,10 @@ function initGame() {
 
   guesses.parentElement.style.display = 'none';
   guesses.innerHTML = '<li>Previous guesses:</li>';
-  resetButton.style.display = 'none';
   lastResult.innerHTML = '';
   lowOrHi.innerHTML = '';
   hint.innerHTML = '';
+  resetButton.style.display = 'none';
 
   guessInput.value = '';
   // guessInput.setAttribute('min', 1);
