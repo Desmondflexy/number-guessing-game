@@ -3,11 +3,11 @@ const guessSubmit = document.querySelector('.guessSubmit');
 const resultParas = document.querySelectorAll('.resultParas>*');
 const [guesses, lastResult, lowOrHi, hint] = resultParas;
 const resetButton = document.querySelector('.start-game');
+const difficulty = document.querySelector('#difficulty');
 
-const N = 7;  // max number of guess trials
-document.getElementById('turns').innerHTML = N;
-let randomNumber, guessCount;
+let randomNumber, guessCount, N;
 initGame();
+difficulty.addEventListener('change', initGame);
 
 document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -53,6 +53,9 @@ document.querySelector('form').addEventListener('submit', (e) => {
 resetButton.addEventListener('click', initGame);
 
 function initGame() {
+  N = difficulty.value;
+  document.getElementById('turns').innerHTML = N;
+
   guesses.parentElement.style.display = 'none';
   guesses.innerHTML = '<li>Previous guesses:</li>';
   resetButton.style.display = 'none';

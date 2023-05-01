@@ -19,6 +19,18 @@ body {
     text-align: center;
 }
 
+fieldset{
+    background-color: aliceblue;
+    border-radius: 8px;
+}
+
+.difficulty {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
 form {
     display: flex;
     gap: 4px;
@@ -29,13 +41,13 @@ form {
     margin: auto;
 }
 
-input {
+.guessField {
     width: 200px;
     font-size: 1.2em;
     font-family: 'Kanit', sans-serif;
 }
 
-button{
+button, select {
     padding: 3px;
     font-family: 'Kanit', sans-serif;
 }
@@ -76,7 +88,7 @@ button{
     background-color: red;
 }
 
-#game-over{
+#game-over {
     color: red;
     font-weight: 900;
     border: 2px solid red;
