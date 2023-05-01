@@ -1,23 +1,48 @@
-const guessField = document.querySelector('.guessField');
+const difficultySelect = document.querySelector('#difficulty');
+const guessForm = document.querySelector('#form');
+const guessInput = document.querySelector('.guessField');
 const guessSubmit = document.querySelector('.guessSubmit');
+const resetButton = document.querySelector('.start-game');
 const resultParas = document.querySelectorAll('.resultParas>*');
 const [guesses, lastResult, lowOrHi, hint] = resultParas;
-const resetButton = document.querySelector('.start-game');
-const difficulty = document.querySelector('#difficulty');
-
 let randomNumber, guessCount, N;
-initGame();
-difficulty.addEventListener('change', initGame);
 
-document.querySelector('form').addEventListener('submit', (e) => {
-  e.preventDefault();
+initGame();
+difficultySelect.addEventListener('change', initGame);
+guessForm.addEventListener('submit', checkGuess);
+resetButton.addEventListener('click', initGame);
+
+function initGame() {
+  N = Number(difficultySelect.value);
+  document.getElementById('turns').innerHTML = N;
+
+  guesses.parentElement.style.display = 'none';
+  guesses.innerHTML = '<li>Previous guesses:</li>';
+  resetButton.style.display = 'none';
+  lastResult.innerHTML = '';
+  lowOrHi.innerHTML = '';
+  hint.innerHTML = '';
+
+  guessInput.value = '';
+  // guessInput.setAttribute('min', 1);
+  // guessInput.setAttribute('max', 100);
+  guessInput.disabled = false;
+  guessInput.focus();
+
+  guessSubmit.disabled = false;
+  randomNumber = Math.floor(Math.random() * 100) + 1;
+  guessCount = 0;
+}
+
+function checkGuess(evt) {
+  evt.preventDefault();
   guessCount++;
   if (guessCount === 1) {
     guesses.parentElement.style.display = 'block';
     resetButton.style.display = 'inline-block';
     hint.style.display = 'none';
   }
-  const guess = Number(guessField.value);
+  const guess = Number(guessInput.value);
   const li = document.createElement('li'); guesses.append(li);
   li.innerHTML = guess;
   if (guess === randomNumber) {
@@ -29,7 +54,8 @@ document.querySelector('form').addEventListener('submit', (e) => {
   } else {
     lastResult.id = 'incorrect';
     const low_hi = guess < randomNumber ? 'low' : 'high';
-    lowOrHi.innerHTML = `Your guess is too ${low_hi}. ${N - guessCount} turns remaining.`;
+    const turnsNoun = N - guessCount === 1 ? 'turn' : 'turns';
+    lowOrHi.innerHTML = `Your guess is too ${low_hi}. ${N - guessCount} ${turnsNoun} remaining.`;
     if (guessCount === N) {
       lastResult.innerHTML = 'Game Over!';
       lastResult.id = 'game-over';
@@ -41,41 +67,17 @@ document.querySelector('form').addEventListener('submit', (e) => {
         hint.innerHTML = `Hint: It is an ${randomNumber % 2 ? 'odd' : 'even'} number`;
         hint.style.display = 'block';
       }
-      guessField.value = '';
-      guessField.focus();
+      guessInput.value = '';
+      guessInput.focus();
       // low_hi === 'low' ?
       //   guessField.setAttribute('min', guess + 1)
       //   : guessField.setAttribute('max', guess - 1);
     }
   }
-})
-
-resetButton.addEventListener('click', initGame);
-
-function initGame() {
-  N = difficulty.value;
-  document.getElementById('turns').innerHTML = N;
-
-  guesses.parentElement.style.display = 'none';
-  guesses.innerHTML = '<li>Previous guesses:</li>';
-  resetButton.style.display = 'none';
-  lastResult.innerHTML = '';
-  lowOrHi.innerHTML = '';
-  hint.innerHTML = '';
-
-  guessField.value = '';
-  guessField.setAttribute('min', 1);
-  guessField.setAttribute('max', 100);
-  guessField.disabled = false;
-  guessField.focus();
-
-  guessSubmit.disabled = false;
-  randomNumber = Math.floor(Math.random() * 100) + 1;
-  guessCount = 0;
 }
 
 function gameOver() {
-  guessField.disabled = true;
+  guessInput.disabled = true;
   guessSubmit.disabled = true;
   resetButton.focus();
 }

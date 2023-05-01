@@ -21,7 +21,7 @@ body {
 
 fieldset{
     background-color: aliceblue;
-    border-radius: 8px;
+    border: 0;
 }
 
 .difficulty {
