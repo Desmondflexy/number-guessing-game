@@ -28,21 +28,13 @@ input {
     width: 200px;
 }
 
-form>* {
-    font-size: 1.2em;
-    padding: 10px;
-}
-
 .resultParas {
-    flex-direction: column;
-    margin: 20px 0;
-    gap: 5px;
+    margin: 10px 0;
 }
 
 .resultParas>* {
-    margin: 0;
+    margin: 2px 0;
     padding: 5px;
-    border-radius: 5px;
 }
 
 .guesses {
