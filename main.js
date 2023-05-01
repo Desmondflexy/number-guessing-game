@@ -27,8 +27,8 @@ document.querySelector('form').addEventListener('submit', (e) => {
   } else {
     lastResult.id = 'incorrect';
     const low_hi = guess < randomNumber ? 'low' : 'high';
-    lowOrHi.innerHTML = `Your guess is too ${low_hi}. ${N - guessCount} turns remaining.`;
     const N = 5;  // max number of guess trials
+    lowOrHi.innerHTML = `Your guess is too ${low_hi}. ${N - guessCount} turns remaining.`;
     if (guessCount === N) {
       lastResult.innerHTML = 'Game Over!'
       gameOver();
