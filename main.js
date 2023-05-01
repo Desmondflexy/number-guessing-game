@@ -43,9 +43,9 @@ document.querySelector('form').addEventListener('submit', (e) => {
       }
       guessField.value = '';
       guessField.focus();
-      low_hi === 'low' ?
-        guessField.setAttribute('min', guess + 1)
-        : guessField.setAttribute('max', guess - 1);
+      // low_hi === 'low' ?
+      //   guessField.setAttribute('min', guess + 1)
+      //   : guessField.setAttribute('max', guess - 1);
     }
   }
 })
