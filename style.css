@@ -14,31 +14,40 @@ body {
     max-width: 600px;
     margin: auto;
     padding: 0 20px;
+    text-align: center;
 }
 
 form {
     display: flex;
-    gap: 5px;
+    gap: 4px;
     justify-content: center;
     flex-flow: column nowrap;
     max-width: 200px;
+    align-items: center;
+    margin: auto;
 }
 
 input {
     width: 200px;
+    font-size: 1.2em;
+}
+
+button{
+    padding: 3px;
 }
 
 .resultParas {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .resultParas>* {
-    margin: 2px 0;
+    margin: 4px 0;
     padding: 5px;
 }
 
 .guesses {
     display: flex;
+    justify-content: center;
     list-style: none;
     gap: 10px;
     background-color: blue;
@@ -63,9 +72,15 @@ input {
     background-color: red;
 }
 
+#game-over{
+    color: red;
+    font-weight: 900;
+    border: 2px solid red;
+    box-shadow: 2px 2px 5px;
+}
+
 @media (min-width:400px) {
     form {
-        justify-content: flex-start;
         flex-flow: row nowrap;
         max-width: 600px;
     }

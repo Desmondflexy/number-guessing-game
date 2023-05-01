@@ -4,6 +4,8 @@ const resultParas = document.querySelectorAll('.resultParas>*');
 const [guesses, lastResult, lowOrHi, hint] = resultParas;
 const resetButton = document.querySelector('.start-game');
 
+const N = 7;  // max number of guess trials
+document.getElementById('turns').innerHTML = N;
 let randomNumber, guessCount;
 initGame();
 
@@ -27,15 +29,15 @@ document.querySelector('form').addEventListener('submit', (e) => {
   } else {
     lastResult.id = 'incorrect';
     const low_hi = guess < randomNumber ? 'low' : 'high';
-    const N = 5;  // max number of guess trials
     lowOrHi.innerHTML = `Your guess is too ${low_hi}. ${N - guessCount} turns remaining.`;
     if (guessCount === N) {
-      lastResult.innerHTML = 'Game Over!'
+      lastResult.innerHTML = 'Game Over!';
+      lastResult.id = 'game-over';
       gameOver();
       hint.innerHTML = `The number is ${randomNumber}`;
     } else {
       lastResult.innerHTML = 'Wrong';
-      if (guessCount === Math.ceil(0.6 * N)) {
+      if (guessCount === Math.floor(0.6 * N)) {
         hint.innerHTML = `Hint: It is an ${randomNumber % 2 ? 'odd' : 'even'} number`;
         hint.style.display = 'block';
       }
@@ -59,10 +61,10 @@ function initGame() {
   hint.innerHTML = '';
 
   guessField.value = '';
-  guessField.focus();
   guessField.setAttribute('min', 1);
   guessField.setAttribute('max', 100);
   guessField.disabled = false;
+  guessField.focus();
 
   guessSubmit.disabled = false;
   randomNumber = Math.floor(Math.random() * 100) + 1;
