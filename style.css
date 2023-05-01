@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    /* padding: 0px; */
+    /* margin: 3px; */
+    /* border: 1px solid blue; */
+}
+
+html {
+    font-family: sans-serif;
+    min-width: 360px;
+}
+
+body {
+    max-width: 600px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+form {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-flow: column nowrap;
+    max-width: 200px;
+}
+
+input {
+    width: 200px;
+}
+
+form>* {
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+.resultParas {
+    flex-direction: column;
+    margin: 20px 0;
+    gap: 5px;
+}
+
+.resultParas>* {
+    margin: 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.guesses {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    background-color: blue;
+    color: #fff;
+}
+
+.hint {
+    background-color: hotpink;
+}
+
+.lowOrHi {
+    background-color: yellow;
+}
+
+#correct {
+    color: #fff;
+    background-color: green;
+}
+
+#incorrect {
+    color: #fff;
+    background-color: red;
+}
+
+@media (min-width:400px) {
+    form {
+        justify-content: flex-start;
+        flex-flow: row nowrap;
+        max-width: 600px;
+    }
+}
