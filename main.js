@@ -3,8 +3,9 @@ const guessSubmit = document.querySelector('.guessSubmit');
 const resultParas = document.querySelectorAll('.resultParas>*');
 const [guesses, lastResult, lowOrHi, hint] = resultParas;
 const resetButton = document.querySelector('.start-game');
-const N = 5;  // max number of guess trials
+
 let randomNumber, guessCount;
+initGame();
 
 document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault();
@@ -27,6 +28,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
     lastResult.id = 'incorrect';
     const low_hi = guess < randomNumber ? 'low' : 'high';
     lowOrHi.innerHTML = `Your guess is too ${low_hi}. ${N - guessCount} turns remaining.`;
+    const N = 5;  // max number of guess trials
     if (guessCount === N) {
       lastResult.innerHTML = 'Game Over!'
       gameOver();
@@ -45,9 +47,8 @@ document.querySelector('form').addEventListener('submit', (e) => {
     }
   }
 })
-resetButton.addEventListener('click', initGame);
 
-initGame();
+resetButton.addEventListener('click', initGame);
 
 function initGame() {
   guesses.parentElement.style.display = 'none';
