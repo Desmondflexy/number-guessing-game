@@ -1,3 +1,5 @@
+// Global variables
+
 const difficultySelect = document.querySelector('#difficulty');
 const guessForm = document.querySelector('#form');
 const guessInput = document.querySelector('.guessField');
@@ -7,10 +9,16 @@ const resultParas = document.querySelectorAll('.resultParas>*');
 const [guesses, lastResult, lowOrHi, hint] = resultParas;
 let randomNumber, guessCount, N;
 
+
+// Main program
+
 initGame();
 difficultySelect.addEventListener('change', initGame);
-guessForm.addEventListener('submit', checkGuess);
 resetButton.addEventListener('click', initGame);
+guessForm.addEventListener('submit', checkGuess);
+
+
+// Function definitions
 
 function initGame() {
   N = Number(difficultySelect.value);
@@ -24,8 +32,6 @@ function initGame() {
   resetButton.style.display = 'none';
 
   guessInput.value = '';
-  // guessInput.setAttribute('min', 1);
-  // guessInput.setAttribute('max', 100);
   guessInput.disabled = false;
   guessInput.focus();
 
@@ -37,41 +43,33 @@ function initGame() {
 function checkGuess(evt) {
   evt.preventDefault();
   guessCount++;
-  if (guessCount === 1) {
-    guesses.parentElement.style.display = 'block';
-    resetButton.style.display = 'inline-block';
-    hint.style.display = 'none';
-  }
+  if (guessCount === 1) showParas();
   const guess = Number(guessInput.value);
   const li = document.createElement('li'); guesses.append(li);
   li.innerHTML = guess;
   if (guess === randomNumber) {
-    lastResult.innerHTML = 'Correct!'
+    lastResult.innerHTML = 'You win!'
     lastResult.id = 'correct';
-    lowOrHi.innerHTML = `You got it right in ${guessCount} guesses.`
-    gameOver();
+    lowOrHi.innerHTML = `You got it right in ${guessCount} ${guessCount - 1 ? 'guesses' : 'guess'}.`;
     hint.style.display = 'none';
+    gameOver();
   } else {
     lastResult.id = 'incorrect';
     const low_hi = guess < randomNumber ? 'low' : 'high';
-    const turnsNoun = N - guessCount === 1 ? 'turn' : 'turns';
-    lowOrHi.innerHTML = `Your guess is too ${low_hi}. ${N - guessCount} ${turnsNoun} remaining.`;
-    if (guessCount === N) {
-      lastResult.innerHTML = 'Game Over!';
-      lastResult.id = 'game-over';
-      gameOver();
-      hint.innerHTML = `The number is ${randomNumber}`;
-    } else {
-      lastResult.innerHTML = 'Wrong';
-      if (guessCount === Math.floor(0.6 * N)) {
-        hint.innerHTML = `Hint: It is an ${randomNumber % 2 ? 'odd' : 'even'} number`;
-        hint.style.display = 'block';
-      }
+    const rem = N - guessCount  // remaining number of guesses.
+    const turnsNoun = (rem === 1) ? 'turn' : 'turns';
+    lowOrHi.innerHTML = `Your guess is too ${low_hi}. Try a ${low_hi === 'low' ? 'higher' : 'lower'} number.`;
+    if (guessCount !== N) {
+      lastResult.innerHTML = `Wrong. ${rem} ${turnsNoun} remaining.`;
+      if (guessCount === Math.floor(0.6 * N)) showHint();
       guessInput.value = '';
       guessInput.focus();
-      // low_hi === 'low' ?
-      //   guessField.setAttribute('min', guess + 1)
-      //   : guessField.setAttribute('max', guess - 1);
+    } else {
+      lastResult.innerHTML = 'Game Over!';
+      lastResult.id = 'game-over';
+      lowOrHi.style.display = 'none';
+      hint.innerHTML = `The number is ${randomNumber}`;
+      gameOver();
     }
   }
 }
@@ -80,4 +78,16 @@ function gameOver() {
   guessInput.disabled = true;
   guessSubmit.disabled = true;
   resetButton.focus();
+}
+
+function showHint() {
+  hint.style.display = 'block';
+  hint.innerHTML = `Hint: It is an ${randomNumber % 2 ? 'odd' : 'even'} number`;
+}
+
+function showParas() {
+  guesses.parentElement.style.display = 'block';
+  lowOrHi.style.display = 'block';
+  hint.style.display = 'none';
+  resetButton.style.display = 'inline-block';
 }
