@@ -1,3 +1,11 @@
-# number-guessing-game
+# Number Guessing Game
 
-https://coruscating-palmier-0effcb.netlify.app
+This project is a number guessing game. The user is prompted to guess a number within a certain range, and the game provides feedback on whether the guess is too high or too low. The game continues until the user correctly guesses the number.
+
+The project is hosted on https://coruscating-palmier-0effcb.netlify.app.
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript

@@ -2,39 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number guessing game</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="main.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number guessing game</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
 </head>
 
 <body>
-    <h1>Number guessing game</h1>
-    <fieldset class="difficulty">
-        <label for="difficulty">Select difficulty</label>
-        <select id="difficulty" name="difficulty">
-            <option value="10">Easy (10 attempts)</option>
-            <option value="7">Medium (7 attempts)</option>
-            <option value="5">Hard (5 attempts)</option>
-        </select>
-    </fieldset>
-    <p>I am thinking of a number. The number is between 1 and 100. See if you can guess it in <span id="turns"></span>
-        turns or fewer. I'll tell you if your guess was too high or too low.</p>
+  <h1>Number guessing game</h1>
+  <fieldset class="difficulty">
+    <label for="difficulty">Select difficulty</label>
+    <select id="difficulty" name="difficulty">
+      <option value="10">Easy (10 attempts)</option>
+      <option value="7">Medium (7 attempts)</option>
+      <option value="5">Hard (5 attempts)</option>
+    </select>
+  </fieldset>
+  <p>I am thinking of a number. The number is between 1 and 100. See if you can guess it in <span id="turns"></span>
+    turns or fewer. I'll tell you if your guess was too high or too low.</p>
 
-    <form id="form">
-        <input class="guessField" type="number" required placeholder="Enter a guess" min="1" max="100">
-        <button class="guessSubmit">Submit guess</button>
-    </form>
+  <form id="form">
+    <input class="guessField" type="number" required placeholder="Enter a guess" min="1" max="100">
+    <button class="guessSubmit">Submit guess</button>
+  </form>
 
-    <div class="resultParas">
-        <ul class="guesses"></ul>
-        <p class="lastResult"></p>
-        <p class="lowOrHi"></p>
-        <p class="hint"></p>
-    </div>
-    <button class="start-game">Start new game</button>
+  <div class="resultParas">
+    <ul class="guesses"></ul>
+    <p class="lastResult"></p>
+    <p class="lowOrHi"></p>
+    <p class="hint"></p>
+  </div>
+  <button class="start-game">Start new game</button>
 
 </body>
 

@@ -17,7 +17,7 @@ function initGame() {
   document.getElementById('turns').innerHTML = N;
 
   guesses.parentElement.style.display = 'none';
-  guesses.innerHTML = '<li>Previous guesses:</li>';
+  guesses.innerHTML = '<li id="guesses-header"></li>';
   lastResult.innerHTML = '';
   lowOrHi.innerHTML = '';
   hint.innerHTML = '';
@@ -41,11 +41,12 @@ function checkGuess(e) {
   const li = document.createElement('li');
   guesses.append(li);
   li.innerHTML = guess;
+  document.querySelector('#guesses-header').innerHTML = guesses.childElementCount > 2 ? 'Previous guesses:' : 'Previous guess:';
 
   if (guess === randomNumber) {
     lastResult.innerHTML = 'You win!'
     lastResult.id = 'correct';
-    lowOrHi.innerHTML = `You got it right in ${guessCount} ${guessCount - 1? 'guesses':'guess'}.`;
+    lowOrHi.innerHTML = `You got it right in ${guessCount} ${guessCount - 1 ? 'guesses' : 'guess'}.`;
     hint.style.display = 'none';
     gameOver();
 
@@ -53,10 +54,10 @@ function checkGuess(e) {
     lastResult.id = 'incorrect';
     const low_hi = guess < randomNumber ? 'low' : 'high';
     const remain = N - guessCount  // remaining number of guesses.
-    lowOrHi.innerHTML = `Your guess is too ${low_hi}. Try a ${low_hi === 'low'? 'higher':'lower'} number.`;
+    lowOrHi.innerHTML = `Your guess is too ${low_hi}. Try a ${low_hi === 'low' ? 'higher' : 'lower'} number.`;
 
     if (guessCount !== N) {
-      lastResult.innerHTML = `Wrong. ${remain} ${remain === 1? 'turn':'turns'} remaining.`;
+      lastResult.innerHTML = `Wrong. ${remain} ${remain === 1 ? 'turn' : 'turns'} remaining.`;
       if (guessCount === Math.floor(0.6 * N)) showHint();
       guessInput.value = '';
       guessInput.focus();
